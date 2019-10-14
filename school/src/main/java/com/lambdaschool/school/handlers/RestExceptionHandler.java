@@ -68,7 +68,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
     }
 
     //  a non-handled endpoint is accessed (a URL not found exception)
-
     @Override
     protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex,
                                                                    HttpHeaders headers,
@@ -85,19 +84,19 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler
         return new ResponseEntity<>(errorDetail, null, HttpStatus.NOT_FOUND);
     }
 
-    @Override
-    protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex,
-                                                                         HttpHeaders headers,
-                                                                         HttpStatus status,
-                                                                         WebRequest request)
-    {
-        ErrorDetail errorDetail = new ErrorDetail();
-        errorDetail.setTimestamp(new Date().getTime());
-        errorDetail.setStatus(HttpStatus.NOT_FOUND.value());
-        errorDetail.setTitle(ex.getMethod());
-        errorDetail.setDetail(request.getDescription(true));
-        errorDetail.setDevelopermessage("HTTP Method Not Valid(check for valid URI and proper HTTP Method)");
-
-        return new ResponseEntity<>(errorDetail, null, HttpStatus.NOT_FOUND);
-    }
+//    @Override
+//    protected ResponseEntity<Object> handleHttpRequestMethodNotSupported(HttpRequestMethodNotSupportedException ex,
+//                                                                         HttpHeaders headers,
+//                                                                         HttpStatus status,
+//                                                                         WebRequest request)
+//    {
+//        ErrorDetail errorDetail = new ErrorDetail();
+//        errorDetail.setTimestamp(new Date().getTime());
+//        errorDetail.setStatus(HttpStatus.NOT_FOUND.value());
+//        errorDetail.setTitle(ex.getMethod());
+//        errorDetail.setDetail(request.getDescription(true));
+//        errorDetail.setDevelopermessage("HTTP Method Not Valid(check for valid URI and proper HTTP Method)");
+//
+//        return new ResponseEntity<>(errorDetail, null, HttpStatus.NOT_FOUND);
+//    }
 }
