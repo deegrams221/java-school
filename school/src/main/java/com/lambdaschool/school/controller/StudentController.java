@@ -68,8 +68,11 @@ public class StudentController
                  produces = {"application/json"})
     public ResponseEntity<?> addNewStudent(@Valid
                                            @RequestBody
-                                                   Student newStudent) throws URISyntaxException
+                                                   Student newStudent,
+                                           HttpServletRequest request) throws URISyntaxException
     {
+        logger.info(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
+
         newStudent = studentService.save(newStudent);
 
         // set the location header for the newly created resource
@@ -86,8 +89,11 @@ public class StudentController
             @RequestBody
                     Student updateStudent,
             @PathVariable
-                    long Studentid)
+                    long Studentid,
+            HttpServletRequest request)
     {
+        logger.info(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
+
         studentService.update(updateStudent, Studentid);
         return new ResponseEntity<>(HttpStatus.OK);
     }
@@ -96,8 +102,11 @@ public class StudentController
     @DeleteMapping("/Student/{Studentid}")
     public ResponseEntity<?> deleteStudentById(
             @PathVariable
-                    long Studentid)
+                    long Studentid,
+            HttpServletRequest request)
     {
+        logger.info(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
+
         studentService.delete(Studentid);
         return new ResponseEntity<>(HttpStatus.OK);
     }
