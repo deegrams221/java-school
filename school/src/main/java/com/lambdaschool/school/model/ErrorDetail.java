@@ -19,7 +19,8 @@ public class ErrorDetail
     private String developermessage;
     private Map<String, List<ValidationError>> errors = new HashMap<>();
 
-    // not adding contructors - rely on default constructor
+    // not adding constructors - rely on default constructor
+
     // getters and setters - all fields including map
     public String getTitle()
     {
